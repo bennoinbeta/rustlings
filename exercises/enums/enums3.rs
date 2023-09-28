@@ -5,10 +5,12 @@
 // Execute `rustlings hint enums3` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 enum Message {
-    // TODO: implement the message variant types based on their usage below
+    ChangeColor(u8, u8, u8),
+    Echo(String),
+    Move(Point),
+    Quit,
+    Fly { moon: bool, velocity: usize },
 }
 
 struct Point {
@@ -24,15 +26,15 @@ struct State {
 }
 
 impl State {
-    fn change_color(&mut self, color: (u8, u8, u8)) {
+    fn change_color(self: &mut Self, color: (u8, u8, u8)) {
         self.color = color;
     }
 
-    fn quit(&mut self) {
+    fn quit(self: &mut Self) {
         self.quit = true;
     }
 
-    fn echo(&mut self, s: String) {
+    fn echo(self: &mut Self, s: String) {
         self.message = s
     }
 
@@ -40,10 +42,17 @@ impl State {
         self.position = p;
     }
 
-    fn process(&mut self, message: Message) {
-        // TODO: create a match expression to process the different message variants
-        // Remember: When passing a tuple as a function argument, you'll need extra parentheses:
-        // fn function((t, u, p, l, e))
+    fn process(self: &mut Self, message: Message) -> () {
+        match message {
+            Message::ChangeColor(r, g, b) => self.change_color((r, g, b)),
+            Message::Echo(echo) => self.echo(echo),
+            Message::Move(point) => self.move_position(point),
+            Message::Quit => self.quit(),
+            Message::Fly {
+                moon: jeff,
+                velocity,
+            } => println!("{} - {}", jeff, velocity),
+        };
     }
 }
 
@@ -53,7 +62,7 @@ mod tests {
 
     #[test]
     fn test_match_message_call() {
-        let mut state = State {
+        let mut state: State = State {
             quit: false,
             position: Point { x: 0, y: 0 },
             color: (0, 0, 0),
@@ -63,6 +72,10 @@ mod tests {
         state.process(Message::Echo(String::from("Hello world!")));
         state.process(Message::Move(Point { x: 10, y: 15 }));
         state.process(Message::Quit);
+        state.process(Message::Fly {
+            moon: true,
+            velocity: 40,
+        });
 
         assert_eq!(state.color, (255, 0, 255));
         assert_eq!(state.position.x, 10);

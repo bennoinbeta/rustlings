@@ -5,11 +5,10 @@
 // Execute `rustlings hint primitive_types5` or use the `hint` watch subcommand
 // for a hint.
 
-// I AM NOT DONE
-
 fn main() {
-    let cat = ("Furry McFurson", 3.5);
-    let /* your pattern here */ = cat;
+    // Similar to array with fixed size but it can hold different types instead of only one like an array does
+    let cat: (&str, f32) = ("Furry McFurson", 3.5);
+    let (name, age) = cat;
 
     println!("{} is {} years old.", name, age);
 }

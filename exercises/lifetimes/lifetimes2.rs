@@ -6,8 +6,6 @@
 // Execute `rustlings hint lifetimes2` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
     if x.len() > y.len() {
         x
@@ -17,11 +15,15 @@ fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
 }
 
 fn main() {
-    let string1 = String::from("long string is long");
-    let result;
+    let string1: String = String::from("long string is long");
+    let result: &str;
     {
-        let string2 = String::from("xyz");
+        let string2: String = String::from("xyz");
         result = longest(string1.as_str(), string2.as_str());
+        println!("The longest string is '{}'", result);
     }
-    println!("The longest string is '{}'", result);
+    // println!("The longest string is '{}'", result); // Out of life of string2 here
+    // and since we specified that string2, string1 and result have the same lifetime 'a
+    // if string2 goes out of life the other two go too as all have the same
+    // and the first goes first and drags the others with him
 }

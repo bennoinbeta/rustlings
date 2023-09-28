@@ -5,8 +5,7 @@
 // Execute `rustlings hint intro2` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
+// Main function is the entry point
 fn main() {
-    println!("Hello {}!");
+    println!("Hello {}!", "World");
 }

@@ -5,11 +5,10 @@
 // Execute `rustlings hint strings2` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 fn main() {
-    let word = String::from("green"); // Try not changing this line :)
-    if is_a_color_word(word) {
+    let word: String = String::from("green"); // Try not changing this line :)
+    if is_a_color_word(&word) {
+        // Conver String to String Slice by just passing a reference to &String which can be converted to &str by Rust
         println!("That is a color word I know!");
     } else {
         println!("That is not a color word I know.");

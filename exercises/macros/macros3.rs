@@ -5,8 +5,7 @@
 // Execute `rustlings hint macros3` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
+#[macro_use] // Make it available to other modules or even outsite the crate
 mod macros {
     macro_rules! my_macro {
         () => {

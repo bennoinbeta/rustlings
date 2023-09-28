@@ -27,8 +27,6 @@ enum IntoColorError {
     IntConversion,
 }
 
-// I AM NOT DONE
-
 // Your task is to complete this implementation and return an Ok result of inner
 // type Color. You need to create an implementation for a tuple of three
 // integers, an array of three integers, and a slice of integers.
@@ -41,6 +39,16 @@ enum IntoColorError {
 impl TryFrom<(i16, i16, i16)> for Color {
     type Error = IntoColorError;
     fn try_from(tuple: (i16, i16, i16)) -> Result<Self, Self::Error> {
+        let (r, g, b) = tuple;
+        let pr: u8 = r.try_into().map_err(|_| IntoColorError::IntConversion)?;
+        let pg: u8 = g.try_into().map_err(|_| IntoColorError::IntConversion)?;
+        let pb: u8 = b.try_into().map_err(|_| IntoColorError::IntConversion)?;
+
+        Ok(Color {
+            red: pr,
+            green: pg,
+            blue: pb,
+        })
     }
 }
 
@@ -48,6 +56,16 @@ impl TryFrom<(i16, i16, i16)> for Color {
 impl TryFrom<[i16; 3]> for Color {
     type Error = IntoColorError;
     fn try_from(arr: [i16; 3]) -> Result<Self, Self::Error> {
+        let [r, g, b] = arr;
+        let pr: u8 = r.try_into().map_err(|_| IntoColorError::IntConversion)?;
+        let pg: u8 = g.try_into().map_err(|_| IntoColorError::IntConversion)?;
+        let pb: u8 = b.try_into().map_err(|_| IntoColorError::IntConversion)?;
+
+        Ok(Color {
+            red: pr,
+            green: pg,
+            blue: pb,
+        })
     }
 }
 
@@ -55,6 +73,18 @@ impl TryFrom<[i16; 3]> for Color {
 impl TryFrom<&[i16]> for Color {
     type Error = IntoColorError;
     fn try_from(slice: &[i16]) -> Result<Self, Self::Error> {
+        let &[r, g, b] = slice else {
+            return Err(IntoColorError::BadLen);
+        };
+        let pr: u8 = r.try_into().map_err(|_| IntoColorError::IntConversion)?;
+        let pg: u8 = g.try_into().map_err(|_| IntoColorError::IntConversion)?;
+        let pb: u8 = b.try_into().map_err(|_| IntoColorError::IntConversion)?;
+
+        Ok(Color {
+            red: pr,
+            green: pg,
+            blue: pb,
+        })
     }
 }
 

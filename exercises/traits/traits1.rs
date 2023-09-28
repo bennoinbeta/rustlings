@@ -7,14 +7,31 @@
 // Execute `rustlings hint traits1` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 trait AppendBar {
     fn append_bar(self) -> Self;
 }
 
+struct Point<T: std::ops::AddAssign, U: std::ops::AddAssign> {
+    x: T,
+    y: U,
+}
+
+impl<T: std::ops::AddAssign, U: std::ops::AddAssign> Point<T, U> {
+    fn new(x: T, y: U) -> Self {
+        Point { x, y }
+    }
+
+    fn move_to(self: &mut Self, x: T, y: U) -> () {
+        self.x += x;
+        self.y += y;
+    }
+}
+
 impl AppendBar for String {
-    // TODO: Implement `AppendBar` for type `String`.
+    fn append_bar(self: Self) -> Self {
+        // String::from(format!("{}{}", self.as_str(), "Bar"))
+        format!("{self}Bar")
+    }
 }
 
 fn main() {

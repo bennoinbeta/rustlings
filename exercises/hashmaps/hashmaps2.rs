@@ -14,8 +14,6 @@
 // Execute `rustlings hint hashmaps2` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 use std::collections::HashMap;
 
 #[derive(Hash, PartialEq, Eq)]
@@ -28,7 +26,7 @@ enum Fruit {
 }
 
 fn fruit_basket(basket: &mut HashMap<Fruit, u32>) {
-    let fruit_kinds = vec![
+    let fruit_kinds: Vec<Fruit> = vec![
         Fruit::Apple,
         Fruit::Banana,
         Fruit::Mango,
@@ -40,6 +38,19 @@ fn fruit_basket(basket: &mut HashMap<Fruit, u32>) {
         // TODO: Insert new fruits if they are not already present in the
         // basket. Note that you are not allowed to put any type of fruit that's
         // already present!
+
+        // match fruit {
+        //     Fruit::Apple => (),
+        //     Fruit::Mango => (),
+        //     Fruit::Lychee => (),
+        //     _ => {
+        //         basket.insert(fruit, 2);
+        //     }
+        // };
+
+        // or
+
+        basket.entry(fruit).or_insert(2);
     }
 }
 
@@ -81,7 +92,7 @@ mod tests {
         let count = basket.values().sum::<u32>();
         assert!(count > 11);
     }
-    
+
     #[test]
     fn all_fruit_types_in_basket() {
         let mut basket = get_fruit_basket();

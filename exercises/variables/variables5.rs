@@ -3,11 +3,13 @@
 // Execute `rustlings hint variables5` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 fn main() {
-    let number = "T-H-R-E-E"; // don't change this line
+    let number: &str = "T-H-R-E-E"; // don't change this line
     println!("Spell a Number : {}", number);
-    number = 3; // don't rename this variable
+    // Redeclare variable number and thus shadow it (Shadowing).
+    // The number of type u8 shadows the number of type &str,
+    // so that anything past the declaration of number of type u8
+    // will refer to the number of type u8 (so the number that shadowed the other number).
+    let number: u8 = 3; 
     println!("Number plus two is : {}", number + 2);
 }

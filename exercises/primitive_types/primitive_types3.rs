@@ -5,10 +5,11 @@
 // Execute `rustlings hint primitive_types3` or use the `hint` watch subcommand
 // for a hint.
 
-// I AM NOT DONE
-
 fn main() {
-    let a = ???
+    // Array is a fixed sized element and can't grow or shrink at runtime
+    // Here we create an array with 100 elements filled with 1 and below with 'b'
+    let a: [u8; 100] = [1; 100];
+    let b: [char; 100] = ['b'; 100];
 
     if a.len() >= 100 {
         println!("Wow, that's a big array!");

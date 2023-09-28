@@ -5,14 +5,22 @@
 //
 // Execute `rustlings hint if2` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 pub fn foo_if_fizz(fizzish: &str) -> &str {
     if fizzish == "fizz" {
         "foo"
+    } else if fizzish == "fuzz" {
+        "bar"
     } else {
-        1
+        // return 1; // Would not work as if is an expression and in Rust an expression can only return ONE type so either String Slice (&str) or i32
+        "baz"
     }
+
+    // Or solve with match statement which can be seen as an advanced switch case statement compared to other languages
+    // match fizzish {
+    //     "fizz" => "foo",
+    //     "fuzz" => "bar",
+    //     _ => "baz"
+    // }
 }
 
 // No test changes needed!

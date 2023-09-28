@@ -7,11 +7,13 @@
 //
 // Execute `rustlings hint vecs1` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
-fn array_and_vec() -> ([i32; 4], Vec<i32>) {
-    let a = [10, 20, 30, 40]; // a plain array
-    let v = // TODO: declare your vector here with the macro for vectors
+fn array_and_vec() -> ([u8; 4], Vec<u8>) {
+    let a: [u8; 4] = [10, 20, 30, 40]; // a plain array
+    let v: Vec<u8> = vec![10, 20, 30, 40];
+    let v2: Vec<u8> = Vec::from([10, 20, 30, 40]);
+    let mut v3: Vec<u8> = Vec::new();
+    v3.extend(&v);
+    let v4: Vec<u8> = a.into();
 
     (a, v)
 }
